@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Sayi Uretme</title>
+    <style>
+  body{
+    margin: 50px 50px 0 50px;
+  }
+    </style>
+</head>
+<body>
+    <label for="min">Minimum Değer:</label>
+    <div>  
+        <input type="range" id="min" name="min"
+               min="0" max="100" step="1"> 
+        <button onclick="degerSec('min')">Seç</button>   
+        <input type="text" id="minSonuc"disabled>  
+      </div>
+      <label for="max">Maximum Değer:</label>
+      <div>  
+          <input type="range" id="max" name="max"
+                 min="0" max="100" step="1"> 
+          <button onclick="degerSec('max')">Seç</button>   
+          <input type="text" id="maxSonuc" disabled>  
+        </div>
+        <br>
+        <button onclick="uret()">Üret</button>
+        <hr>
+        <label for="result">Rastgele Sayı: </label>
+        <span id="result"></span>
+        <script>
+            var minDeger=document.querySelector("#minSonuc");           
+            var maxDeger=document.querySelector("#maxSonuc");
+
+            function degerSec(inputId){
+                const deger = document.getElementById(inputId).value;         
+                if(inputId=="min"){
+                    minDeger.value=deger;
+                }
+                else if(inputId=="max"){
+                    maxDeger.value=deger;
+                }   
+            }  
+            function uret()        
+            {
+               if(minDeger.value==""|| maxDeger.value==""||(minDeger.value>maxDeger.value)){
+                alert("Lütfen değerlerinizi kontrol ediniz.");
+                document.getElementById("result").innerHTML="";
+               }
+               else{
+
+                   let random = Math.random();
+                    random = random*(parseFloat(maxDeger.value) - parseFloat(minDeger.value) + 1) + parseFloat(minDeger.value);
+                    random = Math.floor(random);
+                    document.getElementById("result").innerHTML=random;
+               }
+            }
+        </script>
+</body>
+</html>
